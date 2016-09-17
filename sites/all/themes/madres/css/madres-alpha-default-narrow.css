@@ -21,16 +21,11 @@
     
 }
 #zone-branding{
-	background: url('../images/1.png') no-repeat center center ;
-	/*text-align: center;*/
-	padding-top: 20px;
-	padding-bottom: 113px;
-
-	
+		
 }
-.front.logged-in #zone-branding{
+/*.front.logged-in #zone-branding{
 	padding-bottom:100px;
-}
+}*/
 
 /*-----------------------------------------------------------------------------------*/
 /*	3.	Navigation & Menus
@@ -61,17 +56,31 @@
 /*	8.	Vistas
 /*-----------------------------------------------------------------------------------*/
 #block-menu-menu-pie {
-    float: right;
-    padding-bottom: 5px;
-    padding-top: 40px;
+    /*float: right;*/
+    /*padding-bottom: 5px;*/
+   /* padding-top: 40px;*/
 }
+#block-user-login .block-inner{
+	margin:0;
+	margin:0;
+    padding-bottom: 54px;
+     padding-left: 50px;
+    padding-top: 195px;
+   
+}
+#block-user-login{
+    padding: 10px 30px;
+}
+
+
+
 
 input{
 	width: 200px;	
 }
-#block-user-login{
+/*#block-user-login{
 	max-width: 360px;
-}
+}*/
 #block-block-1{
 	margin:10px;
 }
@@ -94,6 +103,16 @@ input{
 #block-block-9 .bloque_info{
 	width: 45%;
 	padding: 10px;
+	vertical-align:top;
 }
 
+#block-views-foros-block-3{
+	width:45%;
+	display:inline-block;
+	vertical-align:top;
+}
+#block-views-productos-block-1{
+	width:45%;
+	display:inline-block;
+}
 

@@ -2,6 +2,9 @@
 	padding-bottom: 3em;
 	padding-top:7em;
 }
-.site-name-slogan{
+/*.site-name-slogan{
 	height: 34px;
+}*/
+.branding-data.clearfix{
+	max-height: 50px;
 }
