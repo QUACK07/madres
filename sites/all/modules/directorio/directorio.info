@@ -1,0 +1,7 @@
+name = Funciones para directorio
+description = Modulo para funciones necesariaas para apartado de directorio
+core = 7.x
+version = 7.x-1.0
+package = UDG
+
+files[] = directorio.module

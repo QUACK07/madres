@@ -1,0 +1,104 @@
+<?php
+
+/*function vcard_menu() {
+	$items = array();
+
+	$items['directorio/vcard'] = array(
+		'title' => 'VCard Archivo',
+		'page arguments' => array(2, 3),
+		'access callback' => TRUE,
+		'type' => MENU_CALLBACK,
+	);
+	return $items;
+}*/
+
+
+/*
+ *Funcion para traer piso de un termino de taxonomia
+ */
+function term_depth($tid) {
+  $parent = db_query("SELECT parent FROM {taxonomy_term_hierarchy} WHERE tid = :tid", array(':tid' => $tid))->fetchField();
+  if($parent == 0) {
+    return 1;
+  }else  {
+    return 1+term_depth($parent);
+  }
+}
+
+
+/*
+ *traer arbol anidado
+ */
+
+function taxonomy_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
+  if (is_int($terms)) {
+    $terms = taxonomy_get_tree($terms);
+  }
+
+  foreach(
+$terms as $term) {
+    foreach($term->parents as $term_parent) {
+      if ($term_parent == $parent) {
+        $return[$term->tid] = $term;
+      }
+      else {
+        $parents_index[$term_parent][$term->tid] = $term;
+      }
+    }
+  }
+
+  foreach(
+$return as &$term) {
+    if (isset($parents_index[$term->tid]) && !is_null($max_depth) && $depth < $max_depth) {
+      $term->children = taxonomy_get_nested_tree($parents_index[$term->tid], $max_depth, $term->tid, $parents_index, $depth + 1);
+    }
+  }
+
+  return
+$return;
+}
+
+
+function directorio_preprocess(&$variables, $hook) {
+	if ($hook == 'page') {
+		drupal_add_js(drupal_get_path('module', 'directorio') . '/js/accesible.js', array('group' => JS_DEFAULT));
+	}
+}
+//Funcion para datos adjuntos
+
+function tamano($bytes)
+    {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+}
+
+
+
+
+
+
+
